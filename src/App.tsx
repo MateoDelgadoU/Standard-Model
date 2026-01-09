@@ -1,13 +1,26 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import { StandardModelTable } from './components/StandardModelTable';
 import { ParticleModal } from './components/ParticleModal';
 import { AnimatedBackground } from './components/AnimatedBackground';
-import { getParticleById } from './data/particles';
+import { getParticleByIdWithAntiparticle } from './data/antiparticles';
 import { Atom, User } from 'lucide-react';
 
+const STORAGE_KEY = 'show-antiparticles';
+
 function App() {
+  const [showAntiparticles, setShowAntiparticles] = useState<boolean>(() => {
+    const stored = localStorage.getItem(STORAGE_KEY);
+    return stored === 'true';
+  });
+
   const [selectedParticleId, setSelectedParticleId] = useState<string | null>(null);
-  const selectedParticle = selectedParticleId ? (getParticleById(selectedParticleId) ?? null) : null;
+  const selectedParticle = selectedParticleId 
+    ? (getParticleByIdWithAntiparticle(selectedParticleId, showAntiparticles) ?? null)
+    : null;
+
+  useEffect(() => {
+    localStorage.setItem(STORAGE_KEY, String(showAntiparticles));
+  }, [showAntiparticles]);
 
   const handleParticleClick = useCallback((particleId: string) => {
     setSelectedParticleId(particleId);
@@ -17,9 +30,16 @@ function App() {
     setSelectedParticleId(null);
   }, []);
 
+  const toggleAntiparticles = useCallback(() => {
+    setShowAntiparticles((prev) => !prev);
+  }, []);
+
   return (
     <div className="relative min-h-screen">
       <AnimatedBackground />
+      {showAntiparticles && (
+        <div className="fixed inset-0 bg-gradient-to-b from-blue-950/20 via-transparent to-blue-950/20 pointer-events-none z-[5] transition-opacity duration-500" />
+      )}
 
       <div className="relative z-10">
         <div className="pt-12 sm:pt-16 pb-6 sm:pb-8 px-3 sm:px-4 animate-fade-in-up">
@@ -43,7 +63,11 @@ function App() {
 
         <div className="px-3 sm:px-4 pb-12 sm:pb-16">
           <div className="max-w-7xl mx-auto">
-            <StandardModelTable onParticleClick={handleParticleClick} />
+            <StandardModelTable 
+              onParticleClick={handleParticleClick} 
+              showAntiparticles={showAntiparticles}
+              onToggleAntiparticles={toggleAntiparticles}
+            />
           </div>
         </div>
 
