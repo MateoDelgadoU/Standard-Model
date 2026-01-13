@@ -39,11 +39,11 @@ export function ParticleModal({ particle, isOpen, onClose }: ParticleModalProps)
       />
 
       <div
-        className={`fixed inset-3 sm:inset-4 md:inset-auto md:top-1/2 md:left-1/2 md:-translate-x-1/2 md:-translate-y-1/2 md:w-[600px] md:max-h-[90vh] z-50 transition-opacity duration-300 ${
+        className={`fixed inset-x-3 top-3 bottom-auto max-h-[85vh] sm:inset-x-4 sm:top-4 sm:max-h-[85vh] md:inset-auto md:top-1/2 md:left-1/2 md:-translate-x-1/2 md:-translate-y-1/2 md:w-[600px] md:max-h-[90vh] z-50 transition-opacity duration-300 ${
           isVisible ? 'opacity-100' : 'opacity-0'
         }`}
       >
-        <div className="glass rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8 h-full md:h-auto overflow-y-auto">
+        <div className="glass rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8 overflow-y-auto">
           <div className="flex items-start justify-between mb-4 sm:mb-6 md:mb-8 gap-2 sm:gap-4">
             <div className="flex items-center gap-2 sm:gap-3 md:gap-4 flex-1 min-w-0">
               <div
