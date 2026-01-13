@@ -33,7 +33,7 @@ export function ParticleModal({ particle, isOpen, onClose }: ParticleModalProps)
     <>
       <div
         onClick={onClose}
-        className={`fixed inset-0 bg-black/80 backdrop-blur-sm z-40 transition-opacity duration-300 ${
+        className={`fixed inset-0 bg-black/95 z-40 transition-opacity duration-300 ${
           isVisible ? 'opacity-100' : 'opacity-0'
         }`}
       />

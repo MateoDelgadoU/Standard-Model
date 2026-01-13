@@ -42,18 +42,14 @@ function App() {
       )}
 
       <div className="relative z-10">
-        <div className="pt-12 sm:pt-16 pb-6 sm:pb-8 px-3 sm:px-4 animate-fade-in-up">
+        <div className="pt-12 sm:pt-16 pb-6 sm:pb-8 px-3 sm:px-4">
           <div className="max-w-7xl mx-auto">
             <div className="flex items-center justify-center gap-2 sm:gap-4 mb-4 sm:mb-6">
-              <div className="animate-rotate-slow">
-                <Atom className="w-8 h-8 sm:w-12 sm:h-12 text-white/60" />
-              </div>
+              <Atom className="w-8 h-8 sm:w-12 sm:h-12 text-white/60" />
               <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-white">
                 Particle Physics
               </h2>
-              <div className="animate-rotate-reverse">
-                <Atom className="w-8 h-8 sm:w-12 sm:h-12 text-white/60" />
-              </div>
+              <Atom className="w-8 h-8 sm:w-12 sm:h-12 text-white/60" />
             </div>
             <p className="text-center text-white/60 text-sm sm:text-base max-w-2xl mx-auto px-2">
               Explore the fundamental building blocks of the universe. Click on any particle to learn more about its properties and role in the Standard Model.
@@ -80,7 +76,7 @@ function App() {
               href="https://mmatdu.dev"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-3 py-1.5 sm:px-4 sm:py-2 text-xs sm:text-sm text-white/60 hover:text-white/90 bg-white/5 hover:bg-white/10 rounded-lg transition-all duration-200 border border-white/10 hover:border-white/20 hover:scale-105 active:scale-95"
+              className="inline-flex items-center gap-2 px-3 py-1.5 sm:px-4 sm:py-2 text-xs sm:text-sm text-white/60 hover:text-white/90 bg-white/5 hover:bg-white/10 rounded-lg transition-colors duration-200 border border-white/10 hover:border-white/20"
             >
               <User className="w-3 h-3 sm:w-4 sm:h-4" />
               About me

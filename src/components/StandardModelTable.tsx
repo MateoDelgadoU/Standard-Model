@@ -13,7 +13,7 @@ interface StandardModelTableProps {
 export function StandardModelTable({ onParticleClick, showAntiparticles, onToggleAntiparticles }: StandardModelTableProps) {
   return (
     <div className="space-y-6 sm:space-y-8">
-      <div className="text-center space-y-2 sm:space-y-4 animate-fade-in-up">
+      <div className="text-center space-y-2 sm:space-y-4">
         <div className="flex items-center justify-center gap-3 sm:gap-4 mb-2 sm:mb-3 flex-wrap">
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold text-white px-2">
             Standard Model
@@ -40,7 +40,7 @@ export function StandardModelTable({ onParticleClick, showAntiparticles, onToggl
         </p>
       </div>
 
-      <div className="space-y-4 sm:space-y-6 animate-fade-in-delay-1">
+      <div className="space-y-4 sm:space-y-6">
         <div className="flex items-center gap-2 sm:gap-3">
           <div className="h-px flex-1 bg-gradient-to-r from-transparent via-white/20 to-transparent" />
           <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-white/80">Fermions</h2>
@@ -55,7 +55,7 @@ export function StandardModelTable({ onParticleClick, showAntiparticles, onToggl
             {GENERATIONS.map((gen) => (
               <div
                 key={gen.id}
-                className={`text-center ${gen.id === 1 ? 'animate-fade-in-delay-2' : gen.id === 2 ? 'animate-fade-in-delay-3' : 'animate-fade-in-delay-4'}`}
+                className="text-center"
               >
                 <p className="text-sm sm:text-base md:text-lg font-bold text-white mb-0.5 sm:mb-1">Gen {gen.id}</p>
                 <p className="text-[10px] sm:text-xs text-white/40">{gen.name}</p>
@@ -63,7 +63,7 @@ export function StandardModelTable({ onParticleClick, showAntiparticles, onToggl
             ))}
           </div>
 
-          <div className="mb-6 sm:mb-8 animate-fade-in-delay-4">
+          <div className="mb-6 sm:mb-8">
             <div className="flex items-center gap-2 sm:gap-3 mb-3 sm:mb-4">
               <div className="w-1.5 sm:w-2 h-6 sm:h-8 bg-white/30 rounded-full" />
               <div>
@@ -95,7 +95,7 @@ export function StandardModelTable({ onParticleClick, showAntiparticles, onToggl
             </div>
           </div>
 
-          <div className="animate-fade-in-delay-6">
+          <div>
             <div className="flex items-center gap-2 sm:gap-3 mb-3 sm:mb-4">
               <div className="w-1.5 sm:w-2 h-6 sm:h-8 bg-white/30 rounded-full" />
               <div>
@@ -127,7 +127,7 @@ export function StandardModelTable({ onParticleClick, showAntiparticles, onToggl
         </div>
       </div>
 
-      <div className="space-y-4 sm:space-y-6 animate-fade-in-delay-1">
+      <div className="space-y-4 sm:space-y-6">
         <div className="flex items-center gap-2 sm:gap-3">
           <div className="h-px flex-1 bg-gradient-to-r from-transparent via-white/20 to-transparent" />
           <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-white/80">Bosons</h2>
