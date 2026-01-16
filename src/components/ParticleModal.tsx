@@ -33,17 +33,15 @@ export function ParticleModal({ particle, isOpen, onClose }: ParticleModalProps)
     <>
       <div
         onClick={onClose}
-        className={`fixed inset-0 bg-black/95 z-40 transition-opacity duration-300 ${
-          isVisible ? 'opacity-100' : 'opacity-0'
-        }`}
+        className={`fixed inset-0 bg-black/60 backdrop-blur-md z-40 transition-opacity duration-300 ${isVisible ? 'opacity-100' : 'opacity-0'
+          }`}
       />
 
       <div
-        className={`fixed inset-x-3 top-3 bottom-auto max-h-[85vh] sm:inset-x-4 sm:top-4 sm:max-h-[85vh] md:inset-auto md:top-1/2 md:left-1/2 md:-translate-x-1/2 md:-translate-y-1/2 md:w-[600px] md:max-h-[90vh] z-50 transition-opacity duration-300 ${
-          isVisible ? 'opacity-100' : 'opacity-0'
-        }`}
+        className={`fixed inset-x-3 top-3 bottom-auto max-h-[85vh] sm:inset-x-4 sm:top-4 sm:max-h-[85vh] md:inset-auto md:top-1/2 md:left-1/2 md:-translate-x-1/2 md:-translate-y-1/2 md:w-[600px] md:max-h-[90vh] z-50 transition-all duration-300 ease-out ${isVisible ? 'opacity-100 scale-100 translate-y-0' : 'opacity-0 scale-95 translate-y-4'
+          }`}
       >
-        <div className="glass rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8 overflow-y-auto">
+        <div className="glass rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8 overflow-y-auto shadow-2xl border border-white/10">
           <div className="flex items-start justify-between mb-4 sm:mb-6 md:mb-8 gap-2 sm:gap-4">
             <div className="flex items-center gap-2 sm:gap-3 md:gap-4 flex-1 min-w-0">
               <div
