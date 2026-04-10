@@ -25,11 +25,11 @@ function App() {
   const toggleAnti = useCallback(() => setShowAntiparticles((p) => !p), []);
 
   return (
-    <div className="relative h-screen w-screen overflow-hidden flex flex-col">
+    <div className="relative min-h-screen w-screen overflow-x-hidden flex flex-col">
       <AnimatedBackground />
 
       {/* Content — vertically centered */}
-      <div className="relative z-10 flex-1 flex flex-col items-center justify-center px-4 sm:px-8">
+      <div className="relative z-10 flex-1 flex flex-col items-center justify-center px-4 sm:px-8 py-6 sm:py-0">
         <StandardModelTable
           onParticleClick={handleClick}
           showAntiparticles={showAntiparticles}
