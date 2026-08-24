@@ -40,7 +40,7 @@ function App() {
       {/* Footer */}
       <div className="relative z-10 text-center pb-3 sm:pb-4">
         <a
-          href="https://mmatdu.dev"
+          href="https://mmateodelgadou.dev"
           target="_blank"
           rel="noopener noreferrer"
           className="text-[10px] text-white/20 hover:text-white/40 transition-colors duration-200"
