@@ -3,7 +3,6 @@ import type { Particle } from '../types/particle';
 interface ParticleCardProps {
   particle: Particle;
   onClick: () => void;
-  compact?: boolean;
 }
 
 export function ParticleCard({ particle, onClick }: ParticleCardProps) {

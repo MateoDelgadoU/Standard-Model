@@ -27,17 +27,21 @@ export function StandardModelTable({ onParticleClick, showAntiparticles, onToggl
   return (
     <div className="w-full max-w-5xl mx-auto">
       {/* Header */}
-      <div className="flex items-end justify-between mb-5 sm:mb-7">
-        <div>
-          <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white tracking-tight leading-none">
-            Standard Model
-          </h1>
-          <p className="text-[10px] sm:text-xs text-white/25 mt-1.5 tracking-wide">
-            {showAntiparticles ? 'Antiparticles' : 'Elementary particles'}
-          </p>
+      <div className="flex flex-wrap items-center justify-between gap-4 mb-5 sm:mb-7">
+        <div className="flex items-center gap-3 sm:gap-4">
+          <img src="/favicon.svg" alt="" width="64" height="64" className="h-11 w-11 sm:h-14 sm:w-14 shrink-0" />
+          <div>
+            <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white tracking-tight leading-none">
+              Standard Model
+            </h1>
+            <p className="text-[10px] sm:text-xs text-white/25 mt-1.5 tracking-wide">
+              {showAntiparticles ? 'Antiparticles' : 'Elementary particles'}
+            </p>
+          </div>
         </div>
         <button
           onClick={onToggleAntiparticles}
+          aria-pressed={showAntiparticles}
           className={`text-[10px] sm:text-xs px-3 sm:px-4 py-1.5 rounded-full border transition-all duration-200 cursor-pointer ${
             showAntiparticles
               ? 'bg-white/10 border-white/20 text-white/90'

@@ -1,3 +1,5 @@
+import { useEffect, useRef } from 'react';
+
 import type { Particle } from '../types/particle';
 
 interface ParticleModalProps {
@@ -7,6 +9,23 @@ interface ParticleModalProps {
 }
 
 export function ParticleModal({ particle, isOpen, onClose }: ParticleModalProps) {
+  const dialogRef = useRef<HTMLDialogElement>(null);
+
+  useEffect(() => {
+    const dialog = dialogRef.current;
+    if (!dialog) return;
+    const previousFocus = document.activeElement;
+    if (isOpen && particle) {
+      dialog.showModal();
+    } else {
+      dialog.close();
+    }
+    return () => {
+      dialog.close();
+      if (previousFocus instanceof HTMLElement) previousFocus.focus();
+    };
+  }, [isOpen, particle]);
+
   if (!particle) return null;
 
   const rows = [
@@ -19,19 +38,25 @@ export function ParticleModal({ particle, isOpen, onClose }: ParticleModalProps)
   ];
 
   return (
-    <div
-      className={`fixed inset-0 z-40 flex items-center justify-center p-4 transition-all duration-200 ${
-        isOpen
-          ? 'opacity-100 pointer-events-auto'
-          : 'opacity-0 pointer-events-none'
-      }`}
+    <dialog
+      ref={dialogRef}
+      aria-labelledby="particle-title"
+      aria-describedby="particle-description"
+      onCancel={onClose}
+      onClick={(event) => {
+        if (event.target === event.currentTarget) onClose();
+      }}
+      className="fixed inset-0 m-auto w-[calc(100%-2rem)] max-w-sm max-h-[calc(100%-2rem)] overflow-y-auto rounded-2xl border border-white/[0.08] bg-black/90 p-0 text-white shadow-2xl backdrop:bg-black/50 backdrop:backdrop-blur-sm"
     >
-      <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" onClick={onClose} />
-      <div
-        className={`relative w-full max-w-sm rounded-2xl border border-white/[0.08] bg-black/80 backdrop-blur-xl p-6 shadow-2xl transition-transform duration-200 ${
-          isOpen ? 'scale-100' : 'scale-95'
-        }`}
-      >
+      <div className="relative p-6">
+        <button
+          type="button"
+          onClick={onClose}
+          aria-label="Close particle details"
+          className="absolute right-3 top-2 rounded-md px-2 py-1 text-xl text-white/50 hover:text-white focus-visible:outline-2 focus-visible:outline-cyan-300 cursor-pointer"
+        >
+          ×
+        </button>
         {/* Header */}
         <div className="flex items-center gap-4 mb-5">
           <div
@@ -45,7 +70,7 @@ export function ParticleModal({ particle, isOpen, onClose }: ParticleModalProps)
             {particle.symbol}
           </div>
           <div className="min-w-0">
-            <h2 className="text-xl font-semibold text-white truncate">{particle.name}</h2>
+            <h2 id="particle-title" className="text-xl font-semibold text-white truncate">{particle.name}</h2>
             <span
               className="text-[10px] font-medium uppercase tracking-widest"
               style={{ color: `${particle.color}cc` }}
@@ -66,8 +91,8 @@ export function ParticleModal({ particle, isOpen, onClose }: ParticleModalProps)
         </div>
 
         {/* Description */}
-        <p className="text-sm text-white/60 leading-relaxed">{particle.description}</p>
+        <p id="particle-description" className="text-sm text-white/60 leading-relaxed">{particle.description}</p>
       </div>
-    </div>
+    </dialog>
   );
 }

@@ -8,7 +8,11 @@ const STORAGE_KEY = 'show-antiparticles';
 
 function App() {
   const [showAntiparticles, setShowAntiparticles] = useState<boolean>(() => {
-    return localStorage.getItem(STORAGE_KEY) === 'true';
+    try {
+      return localStorage.getItem(STORAGE_KEY) === 'true';
+    } catch {
+      return false;
+    }
   });
 
   const [selectedId, setSelectedId] = useState<string | null>(null);
@@ -17,7 +21,11 @@ function App() {
     : null;
 
   useEffect(() => {
-    localStorage.setItem(STORAGE_KEY, String(showAntiparticles));
+    try {
+      localStorage.setItem(STORAGE_KEY, String(showAntiparticles));
+    } catch {
+      // The toggle still works when browser storage is unavailable.
+    }
   }, [showAntiparticles]);
 
   const handleClick = useCallback((id: string) => setSelectedId(id), []);
