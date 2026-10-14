@@ -12,6 +12,8 @@ export interface Particle {
   category: ParticleCategory;
   charge: string;
   mass: string;
+  massDetail?: string;
+  massNote?: string;
   spin: string;
   description: string;
   generation?: Generation;

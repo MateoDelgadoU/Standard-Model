@@ -1,7 +1,8 @@
 import type { Particle } from '../types/particle';
 import { particlesData } from './particles';
 
-const SELF_CONJUGATE = new Set(['photon', 'gluon', 'z-boson', 'higgs']);
+// W± is a combined entry; the gluon tile represents the entire color octet.
+const SHARED_BOSON_ENTRIES = new Set(['photon', 'gluon', 'z-boson', 'w-boson', 'higgs']);
 
 const antiSymbols: Record<string, string> = {
   u: '\u016B',    // ū
@@ -16,7 +17,6 @@ const antiSymbols: Record<string, string> = {
   '\u03BD\u2091': '\u03BD\u0305\u2091',  // ν̄ₑ
   '\u03BD\u03BC': '\u03BD\u0305\u03BC',  // ν̄μ
   '\u03BD\u03C4': '\u03BD\u0305\u03C4',  // ν̄τ
-  W: 'W',  // W± are each other's antiparticle (symbol stays)
 };
 
 const antiNames: Record<string, string> = {
@@ -36,13 +36,19 @@ function invertCharge(charge: string): string {
 }
 
 export function getAntiparticle(particle: Particle): Particle {
-  if (SELF_CONJUGATE.has(particle.id)) return particle;
+  if (SHARED_BOSON_ENTRIES.has(particle.id)) return particle;
 
   const name = antiNames[particle.id] ?? `Anti-${particle.name.toLowerCase()}`;
   const symbol = antiSymbols[particle.symbol] ?? particle.symbol;
   const charge = invertCharge(particle.charge);
 
-  return { ...particle, id: `anti-${particle.id}`, name, symbol, charge };
+  const description = particle.category === 'quark'
+    ? `Antiparticle of the ${particle.name.toLowerCase()} quark. It has opposite electric charge and conjugate color charge; its mass and spin are the same by CPT symmetry.`
+    : particle.id.includes('neutrino')
+      ? `Electron, muon and tau antineutrinos are distinguished by their charged-current weak interactions. This is the ${particle.name.toLowerCase().replace(' neutrino', '')} flavor. Whether neutrinos are Dirac or Majorana particles remains unknown.`
+      : `Antiparticle of the ${particle.name.toLowerCase()}. It has opposite electric charge and the same mass and spin by CPT symmetry.`;
+
+  return { ...particle, description, id: `anti-${particle.id}`, name, symbol, charge };
 }
 
 export function getParticleOrAntiparticle(particle: Particle, showAnti: boolean): Particle {

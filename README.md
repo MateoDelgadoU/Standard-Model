@@ -43,3 +43,13 @@ pnpm run build
 ---
 
 Built by Mateo Delgado
+
+## Scientific data
+
+Masses and uncertainties follow the [PDG 2026 summary tables](https://pdg.lbl.gov/2026/tables/contents_tables.html) (data cutoff: January 15, 2026). Tiles show rounded values; dialogs show uncertainties and definitions. Natural units use c = 1, spin is in units of ℏ, and electric charge is in units of e. Quark running masses depend on renormalization scheme and scale; the top entry uses direct reconstruction. The W average excludes CDF 2022, following PDG.
+
+Neutrino flavors are mixtures of mass eigenstates, so their tiles do not assign individual masses. The [PDG neutrino review](https://pdg.lbl.gov/2026/reviews/rpp2026-rev-neutrino-mixing.pdf) explains mixing and the unresolved mass origin and Dirac/Majorana nature. The [KATRIN 2025 result](https://www.katrin.kit.edu/1271.php) constrains the effective electron-neutrino mass to less than 0.45 eV at 90% confidence.
+
+The 17 tiles count particle types, grouping the eight gluon color states and both W charges. Antiparticle descriptions distinguish the conjugate states instead of reusing matter descriptions. Photon and gluon zero masses are Standard Model predictions, not measurements with zero uncertainty.
+
+Background motion and the orbit logo are decorative, not physical trajectories or simulations. Descriptions also draw on [CERN's Standard Model overview](https://home.web.cern.ch/science/physics/standard-model/), [ATLAS's J/ψ definition](https://atlas.cern/Glossary/jpsi-meson), and [CERN's explanation of the origin of mass](https://cds.cern.ch/journal/CERNBulletin/2012/28/News%20Articles/1459456?ln=en).

@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react';
 
+import { getScientificSource, NEUTRINO_MASS_NOTE } from '../data/scientificReferences';
 import type { Particle } from '../types/particle';
 
 interface ParticleModalProps {
@@ -29,12 +30,12 @@ export function ParticleModal({ particle, isOpen, onClose }: ParticleModalProps)
   if (!particle) return null;
 
   const rows = [
-    ['Mass', particle.mass],
+    ['Mass', particle.massDetail ?? particle.mass],
     ['Charge', particle.charge === '0' ? '0' : `${particle.charge} e`],
-    ['Spin', particle.spin],
+    ['Spin', `${particle.spin} ℏ`],
     ['Type', `${particle.category?.replace('-', ' ')}`],
     ...(particle.generation ? [['Generation', String(particle.generation)]] : []),
-    ...(particle.force ? [['Force', particle.force]] : []),
+    ...(particle.force ? [[particle.id === 'higgs' ? 'Field' : 'Force', particle.force]] : []),
   ];
 
   return (
@@ -83,15 +84,34 @@ export function ParticleModal({ particle, isOpen, onClose }: ParticleModalProps)
         {/* Properties */}
         <div className="space-y-2 mb-5">
           {rows.map(([label, value]) => (
-            <div key={label} className="flex justify-between items-baseline">
+            <div key={label} className="flex justify-between items-baseline gap-4">
               <span className="text-xs text-white/40 uppercase tracking-wider">{label}</span>
-              <span className="text-sm text-white/90 font-mono">{value}</span>
+              <span className="text-sm text-white/90 font-mono text-right break-words">{value}</span>
             </div>
           ))}
         </div>
 
         {/* Description */}
         <p id="particle-description" className="text-sm text-white/60 leading-relaxed">{particle.description}</p>
+        {(particle.massNote || particle.id.includes('neutrino')) && (
+          <p className="mt-4 text-xs text-white/50 leading-relaxed">
+            {particle.id.includes('neutrino') ? NEUTRINO_MASS_NOTE : particle.massNote}
+          </p>
+        )}
+        <p className="mt-4 text-[10px] text-white/40">Mass units use c = 1; charge is in units of e.</p>
+        <a
+          href={getScientificSource(particle.category)}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mt-2 inline-block text-xs text-cyan-300 hover:underline"
+        >
+          Source: Particle Data Group 2026 ↗
+        </a>
+        {particle.id.includes('neutrino') && (
+          <a href="https://pdg.lbl.gov/2026/reviews/rpp2026-rev-neutrino-mixing.pdf" target="_blank" rel="noopener noreferrer" className="mt-2 block text-xs text-cyan-300 hover:underline">
+            Neutrino masses and mixing ↗
+          </a>
+        )}
       </div>
     </dialog>
   );

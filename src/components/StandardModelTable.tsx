@@ -1,3 +1,4 @@
+import { NEUTRINO_MASS_NOTE } from '../data/scientificReferences';
 import { ParticleCard } from './ParticleCard';
 import { particlesData } from '../data/particles';
 import { getParticleOrAntiparticle } from '../data/antiparticles';
@@ -129,6 +130,15 @@ export function StandardModelTable({ onParticleClick, showAntiparticles, onToggl
           </div>
         ))}
       </div>
+      <details className="mt-5 text-xs text-white/50 leading-relaxed">
+        <summary className="cursor-pointer text-center hover:text-white/80">Scientific notes · PDG 2026</summary>
+        <div className="mx-auto mt-3 max-w-2xl space-y-2">
+          <p>Tiles show rounded central values. Open a particle for uncertainties, mass definitions and sources. Natural units use c = 1 (MeV and GeV denote mass); spin is in units of ℏ and charge in units of e.</p>
+          <p>{NEUTRINO_MASS_NOTE}</p>
+          <p>The 17 tiles represent particle types: the gluon tile includes eight color states, and W± includes both charges. Photon, Z and Higgs are their own antiparticles; the gluon octet maps into itself under charge conjugation.</p>
+          <a href="https://pdg.lbl.gov/2026/tables/contents_tables.html" target="_blank" rel="noopener noreferrer" className="inline-block text-cyan-300 hover:underline">Particle Data Group 2026 ↗</a>
+        </div>
+      </details>
     </div>
   );
 }
